@@ -74,12 +74,11 @@ Place the code in taxi_pipeline.py and name the pipeline taxi_pipeline.
 Use @dlt rest api as a tutorial.
 
 ```
-
 #Step 6: Run and Debug
 
 Run your pipeline and iterate with the agent until it works:
 
-python taxi_pipeline.py
+    python taxi_pipeline.py
 
 
 
