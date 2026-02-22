@@ -1,1 +1,3 @@
-# flyer123-flyer123-DE_zoomcamp_hw_dlt_ai
+Homework for workshop: https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2026/workshops/dlt/README.md
+description[O how to do it:
+
