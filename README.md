@@ -18,24 +18,23 @@ cd my-dlt-pipeline
 Choose the setup for your IDE:
 
 Cursor - go to **Settings → Tools & MCP → New MCP Server** and add:
-
-    {
-      "mcpServers": {
-        "dlt": {
-          "command": "uv",
-          "args": [
-            "run",
-            "--with",
-            "dlt[duckdb]",
-            "--with",
-            "dlt-mcp[search]",
-            "python",
-            "-m",
-            "dlt_mcp"
-          ]
-        }
-      }
+{
+  "mcpServers": {
+    "dlt": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "dlt[duckdb]",
+        "--with",
+        "dlt-mcp[search]",
+        "python",
+        "-m",
+        "dlt_mcp"
+      ]
     }
+  }
+}
 
 
 
@@ -64,67 +63,24 @@ This is where the magic happens. The `dlt init` command scaffolds sample prompts
 ```
 
    
+Build a REST API source for NYC taxi data.
 
- Please generate a REST API Source for Open Library API, as specified in @open_library-docs.yaml
-    Start with endpoint(s) books and skip incremental loading for now.
-    Place the code in open_library_pipeline.py and name the pipeline open_library_pipeline.
-    If the file exists, use it as a starting point.
-    Do not add or modify any other files.
-    Use @dlt rest api as a tutorial.
-    After adding the endpoints, allow the user to run the pipeline with python open_library_pipeline.py and await further instructions.
+API details:
+- Base URL: https://us-central1-dlthub-analytics.cloudfunctions.net/data_engineering_zoomcamp_api
+- Data format: Paginated JSON (1,000 records per page)
+- Pagination: Stop when an empty page is returned
+
+Place the code in taxi_pipeline.py and name the pipeline taxi_pipeline.
+Use @dlt rest api as a tutorial.
 
 ```
 
-### Step 6: Debug with the Agent
+#Step 6: Run and Debug
 
-If there are any errors, paste them into the chat and let the AI resolve them. This is the power of AI-assisted development: you iterate quickly without getting stuck.
+Run your pipeline and iterate with the agent until it works:
 
-### Step 7: Inspect Pipeline Data with the dlt Dashboard
-
-
-Once your pipeline runs successfully, launch the dashboard to inspect your data and metadata:
-
-    dlt pipeline open_library_pipeline show
-
-This opens a web app where you can:
-
--   View pipeline state and run history
--   Explore schemas, tables, and columns
--   Query the loaded data
--   Debug any issues
+python taxi_pipeline.py
 
 
-### Step 8: Inspect the Pipeline via Chat
-
-[](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2026/workshops/dlt/README.md#step-8-inspect-the-pipeline-via-chat)
-
-With the dlt MCP server configured, you can ask the AI about your pipeline directly:
-
-    "What tables were created in the pipeline?"  
-    "Show me the schema for the books table."  
-    "How many rows were loaded?"
-
-The agent has access to your pipeline metadata and can answer these questions.
-
-### Step 9 (Bonus): Build Visualizations with marimo + ibis
-
-
-Take your analysis further by creating interactive reports with [marimo](https://marimo.io/) notebooks and [ibis](https://ibis-project.org/).
-
-Prompt the agent to build a visualization:
-
-     "Create a marimo notebook that visualizes the top 10 authors by book count. Use ibis for data access. Reference: [https://dlthub.com/docs/general-usage/dataset-access/marimo](https://dlthub.com/docs/general-usage/dataset-access/marimo)"
-
-By providing the docs link, the agent will use the correct stack.
-
-Run your notebook:
-
-# Edit mode (for development)
-
-    marimo edit your_notebook.py
-
-# Run mode (view the report)
-
-    marimo run your_notebook.py
 
 
